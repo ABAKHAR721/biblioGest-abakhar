@@ -1,0 +1,14 @@
+# Fichiers et dossiers à ignorer par Git
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Dossiers de build
+bin/
+obj/
+
+# Fichiers système
+Thumbs.db
+*.log
