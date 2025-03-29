@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BiblioGest.ViewModels;
+
 
 namespace BiblioGest;
 
@@ -19,5 +21,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        DataContext = new MainViewModel(); // 🔥 Sans ça, le binding ne marche pas !
+
     }
 }

@@ -1,60 +1,101 @@
-﻿// Ces using sont essentiels
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
-
-// Ajoute ceux-ci si tu ne les as pas déjà :
 using BiblioGest.Models;
 using BiblioGest.Data;
-using BiblioGest.Commands; // si tu as mis RelayCommand ici
+using BiblioGest.Commands;
 
-
-public class LivreViewModel : BaseViewModel
+namespace BiblioGest.ViewModels
 {
-    public ObservableCollection<Livre> Livres { get; set; }
-    public Livre NewLivre { get; set; } = new Livre();
-    public Livre SelectedLivre { get; set; }
-
-    public ICommand AddLivreCommand { get; }
-    public ICommand DeleteLivreCommand { get; }
-
-    public LivreViewModel()
+    public class LivreViewModel : INotifyPropertyChanged
     {
-        AddLivreCommand = new RelayCommand(_ => AjouterLivre());
-        DeleteLivreCommand = new RelayCommand(_ => SupprimerLivre());
-        LoadLivres();
-    }
+        public ObservableCollection<Livre> Livres { get; set; }
 
-    private void LoadLivres()
-    {
-        using var db = new AppDbContext();
-        Livres = new ObservableCollection<Livre>(db.Livres.ToList());
-        OnPropertyChanged(nameof(Livres));
-    }
-
-    private void AjouterLivre()
-    {
-        if (string.IsNullOrWhiteSpace(NewLivre.ISBN)) return;
-
-        using var db = new AppDbContext();
-        db.Livres.Add(NewLivre);
-        db.SaveChanges();
-        Livres.Add(NewLivre);
-        NewLivre = new Livre();
-        OnPropertyChanged(nameof(NewLivre));
-    }
-
-    private void SupprimerLivre()
-    {
-        if (SelectedLivre == null) return;
-
-        using var db = new AppDbContext();
-        var livre = db.Livres.FirstOrDefault(l => l.ISBN == SelectedLivre.ISBN);
-        if (livre != null)
+        private Livre _newLivre = new Livre();
+        public Livre NewLivre
         {
-            db.Livres.Remove(livre);
-            db.SaveChanges();
-            Livres.Remove(SelectedLivre);
+            get => _newLivre;
+            set
+            {
+                _newLivre = value;
+                OnPropertyChanged();
+            }
         }
+
+        private Livre _selectedLivre;
+        public Livre SelectedLivre
+        {
+            get => _selectedLivre;
+            set
+            {
+                _selectedLivre = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand AddLivreCommand { get; }
+        public ICommand DeleteLivreCommand { get; }
+
+        public LivreViewModel()
+        {
+            Livres = new ObservableCollection<Livre>();
+            LoadLivres();
+
+            AddLivreCommand = new RelayCommand(_ => AjouterLivre());
+            DeleteLivreCommand = new RelayCommand(_ => SupprimerLivre());
+        }
+
+        private void LoadLivres()
+        {
+            using var db = new AppDbContext();
+            Livres.Clear();
+            foreach (var livre in db.Livres.ToList())
+            {
+                Livres.Add(livre);
+            }
+        }
+
+        private void AjouterLivre()
+        {
+            if (string.IsNullOrWhiteSpace(NewLivre.ISBN)) return;
+
+            using var db = new AppDbContext();
+            db.Livres.Add(NewLivre);
+            db.SaveChanges();
+
+            Livres.Add(new Livre
+            {
+                ISBN = NewLivre.ISBN,
+                Titre = NewLivre.Titre,
+                Auteur = NewLivre.Auteur,
+                Editeur = NewLivre.Editeur,
+                AnneePublication = NewLivre.AnneePublication,
+                Categorie = NewLivre.Categorie,
+                NombreExemplaires = NewLivre.NombreExemplaires
+            });
+
+            NewLivre = new Livre(); // reset le formulaire
+        }
+
+        private void SupprimerLivre()
+        {
+            if (SelectedLivre == null) return;
+
+            using var db = new AppDbContext();
+            var livre = db.Livres.FirstOrDefault(l => l.ISBN == SelectedLivre.ISBN);
+            if (livre != null)
+            {
+                db.Livres.Remove(livre);
+                db.SaveChanges();
+                Livres.Remove(SelectedLivre);
+                SelectedLivre = null;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

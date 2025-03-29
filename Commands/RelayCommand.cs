@@ -1,8 +1,7 @@
-﻿// 📁 Commands/RelayCommand.cs
-using System;
+﻿using System;
 using System.Windows.Input;
 
-namespace BiblioGest.Commands // remplace par le vrai nom de ton projet si différent
+namespace BiblioGest.Commands
 {
     public class RelayCommand : ICommand
     {

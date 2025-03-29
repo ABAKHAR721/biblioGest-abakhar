@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BiblioGest.ViewModels; // NE PAS OUBLIER !
 
 namespace BiblioGest.Views
 {
@@ -23,6 +24,9 @@ namespace BiblioGest.Views
         public LivreView()
         {
             InitializeComponent();
+            DataContext = new LivreViewModel(); // 🔥 C’est ça qui rend le bouton “Ajouter” actif
+
+
         }
     }
 }
