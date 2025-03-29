@@ -4,7 +4,7 @@ namespace BiblioGest.Models
 {
     public class Livre
     {
-        [Key] // ✅ Très important
+        [Key] 
         public string ISBN { get; set; }
 
         public string Titre { get; set; }
