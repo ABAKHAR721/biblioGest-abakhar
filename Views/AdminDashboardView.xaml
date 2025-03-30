@@ -4,55 +4,56 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BiblioGest.Views"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid>
+    <Grid Background="#F4F6F8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-     
+        <!-- Vue principale -->
+        <ScrollViewer Grid.Column="1" Margin="20">
+            <StackPanel>
+                <TextBlock Text="📊 Tableau de Bord Administratif" FontSize="22" FontWeight="Bold" Margin="0,0,0,20" Foreground="#1976D2"/>
 
-        <!-- Zone principale -->
-        <StackPanel Grid.Column="1" Margin="20">
-            <TextBlock Text="Tableau de Bord Administratif" FontSize="22" FontWeight="Bold" Margin="0,0,0,20"/>
+                <!-- Graphique -->
+                <lvc:CartesianChart Height="200" Margin="0,0,0,20">
+                    <lvc:CartesianChart.Series>
+                        <lvc:ColumnSeries Title="Livres" Values="{Binding LivresSeries}" Fill="#4CAF50"/>
+                        <lvc:ColumnSeries Title="Emprunts" Values="{Binding EmpruntsSeries}" Fill="#1976D2"/>
+                        <lvc:ColumnSeries Title="Retards" Values="{Binding RetardsSeries}" Fill="#E53935"/>
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Catégories" Labels="{Binding Labels}"/>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Nombre"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
 
-            <!-- Statistiques -->
-            <WrapPanel>
-                <StackPanel Width="180" Margin="10">
-                    <TextBlock Text="Livres disponibles" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding TotalLivres}" FontSize="18" Foreground="Green"/>
-                </StackPanel>
-                <StackPanel Width="180" Margin="10">
-                    <TextBlock Text="Emprunts en cours" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding EmpruntsEnCours}" FontSize="18" Foreground="Orange"/>
-                </StackPanel>
-                <StackPanel Width="180" Margin="10">
-                    <TextBlock Text="Retards" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding Retards}" FontSize="18" Foreground="Red"/>
-                </StackPanel>
-            </WrapPanel>
+                <!-- Raccourcis -->
+                <TextBlock Text="⚡ Raccourcis rapides" FontWeight="Bold" Margin="10,10,0,5"/>
+                <WrapPanel>
+                    <Button Content="Ajouter Livre" Command="{Binding ShowLivreViewCommand}" Width="150" Margin="5" Background="#4CAF50" Foreground="White"/>
+                    <Button Content="Nouvel Emprunt" Command="{Binding ShowEmpruntViewCommand}" Width="150" Margin="5" Background="#1976D2" Foreground="White"/>
+                </WrapPanel>
 
-            <!-- Raccourcis -->
-            <TextBlock Text="Raccourcis rapides" FontWeight="Bold" Margin="10,20,0,5"/>
-            <WrapPanel>
-                <Button Content="Ajouter Livre" Command="{Binding ShowLivreViewCommand}" Width="120" Margin="5"/>
-                <Button Content="Nouvel Emprunt" Command="{Binding ShowEmpruntViewCommand}" Width="120" Margin="5"/>
-            </WrapPanel>
-
-            <!-- Activités récentes -->
-            <TextBlock Text="Derniers Emprunts" FontWeight="Bold" Margin="10,20,0,5"/>
-            <DataGrid ItemsSource="{Binding DerniersEmprunts}" AutoGenerateColumns="False" Height="200">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" />
-                    <DataGridTextColumn Header="Adhérent ID" Binding="{Binding AdherentId}" />
-                    <DataGridTextColumn Header="Date Emprunt" Binding="{Binding DateEmprunt}" />
-                    <DataGridTextColumn Header="Retour Prévu" Binding="{Binding DateRetourPrevu}" />
-                    <DataGridTextColumn Header="Retour Effectif" Binding="{Binding DateRetourEffectif}" />
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
+                <!-- Liste des dernières activités -->
+                <TextBlock Text="🕒 Derniers Emprunts" FontWeight="Bold" Margin="10,20,0,5"/>
+                <DataGrid ItemsSource="{Binding DerniersEmprunts}" AutoGenerateColumns="False" Height="200" 
+                          GridLinesVisibility="Horizontal" RowBackground="White" AlternatingRowBackground="#E3F2FD" BorderBrush="#BBDEFB">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" />
+                        <DataGridTextColumn Header="Adhérent ID" Binding="{Binding AdherentId}" />
+                        <DataGridTextColumn Header="Date Emprunt" Binding="{Binding DateEmprunt}" />
+                        <DataGridTextColumn Header="Retour Prévu" Binding="{Binding DateRetourPrevu}" />
+                        <DataGridTextColumn Header="Retour Effectif" Binding="{Binding DateRetourEffectif}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

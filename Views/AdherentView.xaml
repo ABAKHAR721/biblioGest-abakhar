@@ -7,49 +7,55 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <StackPanel Margin="10">
-        <TextBlock Text="Gestion des Adhérents" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+    <Grid Background="#F4F6F8">
+        <Border Padding="20">
+            <StackPanel>
+                <TextBlock Text="👥 Gestion des Adhérents" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" Foreground="#1976D2"/>
 
-        <!-- Formulaire -->
-        <WrapPanel Margin="0,0,0,10">
-            <StackPanel Margin="5">
-                <TextBlock Text="Nom" />
-                <TextBox Width="120" Text="{Binding NewAdherent.Nom}"/>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Prénom" />
-                <TextBox Width="120" Text="{Binding NewAdherent.Prenom}"/>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Adresse" />
-                <TextBox Width="150" Text="{Binding NewAdherent.Adresse}"/>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Email" />
-                <TextBox Width="150" Text="{Binding NewAdherent.Email}"/>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Téléphone" />
-                <TextBox Width="100" Text="{Binding NewAdherent.Telephone}"/>
-            </StackPanel>
-        </WrapPanel>
+                <!-- Formulaire -->
+                <WrapPanel Margin="0,0,0,10">
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Nom" FontWeight="SemiBold"/>
+                        <TextBox Width="120" Text="{Binding NewAdherent.Nom}" Background="White" BorderBrush="#90CAF9"/>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Prénom" FontWeight="SemiBold"/>
+                        <TextBox Width="120" Text="{Binding NewAdherent.Prenom}" Background="White" BorderBrush="#90CAF9"/>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Adresse" FontWeight="SemiBold"/>
+                        <TextBox Width="150" Text="{Binding NewAdherent.Adresse}" Background="White" BorderBrush="#90CAF9"/>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Email" FontWeight="SemiBold"/>
+                        <TextBox Width="150" Text="{Binding NewAdherent.Email}" Background="White" BorderBrush="#90CAF9"/>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Téléphone" FontWeight="SemiBold"/>
+                        <TextBox Width="100" Text="{Binding NewAdherent.Telephone}" Background="White" BorderBrush="#90CAF9"/>
+                    </StackPanel>
+                </WrapPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-            <Button Content="Ajouter" Command="{Binding AddAdherentCommand}" Width="100" Margin="5"/>
-            <Button Content="Modifier" Command="{Binding UpdateAdherentCommand}" Width="100" Margin="5"/>
-            <Button Content="Supprimer" Command="{Binding DeleteAdherentCommand}" Width="100" Margin="5"/>
-        </StackPanel>
+                <!-- Boutons -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button Content="Ajouter" Command="{Binding AddAdherentCommand}" Width="100" Margin="5" Background="#43A047" Foreground="White"/>
+                    <Button Content="Modifier" Command="{Binding UpdateAdherentCommand}" Width="100" Margin="5" Background="#1976D2" Foreground="White"/>
+                    <Button Content="Supprimer" Command="{Binding DeleteAdherentCommand}" Width="100" Margin="5" Background="#E53935" Foreground="White"/>
+                </StackPanel>
 
-        <!-- Liste -->
-        <DataGrid ItemsSource="{Binding Adherents}" SelectedItem="{Binding SelectedAdherent}" AutoGenerateColumns="False" Height="300">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
-                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
-                <DataGridTextColumn Header="Adresse" Binding="{Binding Adresse}" />
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
-                <DataGridTextColumn Header="Téléphone" Binding="{Binding Telephone}" />
-                <DataGridTextColumn Header="Inscription" Binding="{Binding DateInscription}" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </StackPanel>
+                <!-- Tableau -->
+                <DataGrid ItemsSource="{Binding Adherents}" SelectedItem="{Binding SelectedAdherent}" AutoGenerateColumns="False" Height="300" 
+                          GridLinesVisibility="Horizontal" RowBackground="White" AlternatingRowBackground="#E3F2FD" BorderBrush="#BBDEFB">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
+                        <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}"/>
+                        <DataGridTextColumn Header="Adresse" Binding="{Binding Adresse}"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                        <DataGridTextColumn Header="Téléphone" Binding="{Binding Telephone}"/>
+                        <DataGridTextColumn Header="Inscription" Binding="{Binding DateInscription}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Border>
+    </Grid>
 </UserControl>

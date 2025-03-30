@@ -7,21 +7,52 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid>
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Background" Value="#1976D2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1565C0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#FAFAFA">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Menu latéral -->
-        <StackPanel Background="#EEE" Grid.Column="0">
-            <Button Content="Dashboard" Command="{Binding ShowAdminDashboardCommand}" Margin="10"/>
-            <Button Content="Livres" Command="{Binding ShowLivreViewCommand}" Margin="10"/>
-            <Button Content="Adhérents" Command="{Binding ShowAdherentViewCommand}" Margin="10"/>
-            <Button Content="Emprunts" Command="{Binding ShowEmpruntViewCommand}" Margin="10"/>
-        </StackPanel>
+        <DockPanel Background="#E3F2FD" Grid.Column="0" Margin="10">
+            <StackPanel>
+                <TextBlock Text="📚 BiblioGest" FontWeight="Bold" FontSize="18" Foreground="#0D47A1" Margin="10"/>
+                <Button Content="🏠 Dashboard" Command="{Binding ShowAdminDashboardCommand}"/>
+                <Button Content="📘 Livres" Command="{Binding ShowLivreViewCommand}"/>
+                <Button Content="👥 Adhérents" Command="{Binding ShowAdherentViewCommand}"/>
+                <Button Content="📅 Emprunts" Command="{Binding ShowEmpruntViewCommand}"/>
+            </StackPanel>
+        </DockPanel>
 
         <!-- Vue dynamique -->
-        <ContentControl Grid.Column="1" Content="{Binding CurrentView}"/>
+        <Border Grid.Column="1" CornerRadius="12" Margin="10" Background="White">
+            <ContentControl Content="{Binding CurrentView}"/>
+        </Border>
     </Grid>
 </UserControl>
