@@ -13,13 +13,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Menu latéral -->
-        <StackPanel Background="#EEE" Grid.Column="0">
-            <Button Content="Livres" Command="{Binding ShowLivreViewCommand}" Margin="10"/>
-            <Button Content="Adhérents" Command="{Binding ShowAdherentViewCommand}" Margin="10"/>
-            <Button Content="Emprunts" Command="{Binding ShowEmpruntViewCommand}" Margin="10"/>
-            <Button Content="Dashboard" Command="{Binding ShowDashboardViewCommand}" Margin="10"/>
-        </StackPanel>
+     
 
         <!-- Zone principale -->
         <StackPanel Grid.Column="1" Margin="20">

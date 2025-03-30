@@ -24,7 +24,7 @@ namespace BiblioGest.ViewModels
             if (Username == "admin" && Password == "admin")
             {
                 // Authentification réussie
-                Application.Current.MainWindow.Content = new Views.AdminDashboardView();
+                Application.Current.MainWindow.Content = new BiblioGest.Views.MainAppView(); 
             }
             else
             {
