@@ -12,63 +12,57 @@ namespace BiblioGest.ViewModels
 {
     public class AdminDashboardViewModel : INotifyPropertyChanged
     {
-        // 🔢 Statistiques principales
         public int TotalLivres { get; set; }
         public int EmpruntsEnCours { get; set; }
         public int Retards { get; set; }
 
-        // 📊 Graphique
         public SeriesCollection LivresSeries { get; set; }
         public SeriesCollection EmpruntsSeries { get; set; }
         public SeriesCollection RetardsSeries { get; set; }
         public string[] Labels { get; set; }
 
-        // 📋 Dernières activités
         public ObservableCollection<Emprunt> DerniersEmprunts { get; set; }
+
+        public SeriesCollection DashboardSeries { get; set; }
 
         public AdminDashboardViewModel()
         {
             using var db = new AppDbContext();
+            var now = DateTime.UtcNow;
 
             TotalLivres = db.Livres.Count();
             EmpruntsEnCours = db.Emprunts.Count(e => e.DateRetourEffectif == null);
-            Retards = db.Emprunts.Count(e => e.DateRetourEffectif == null && e.DateRetourPrevu < DateTime.Now);
+            Retards = db.Emprunts.Count(e => e.DateRetourEffectif == null && e.DateRetourPrevu < now);
 
-            // 📊 Données pour les graphiques
-            LivresSeries = new SeriesCollection
-            {
-                new ColumnSeries
-                {
-                    Title = "Livres",
-                    Values = new ChartValues<int> { TotalLivres }
-                }
-            };
-
-            EmpruntsSeries = new SeriesCollection
-            {
-                new ColumnSeries
-                {
-                    Title = "Emprunts",
-                    Values = new ChartValues<int> { EmpruntsEnCours }
-                }
-            };
-
-            RetardsSeries = new SeriesCollection
-            {
-                new ColumnSeries
-                {
-                    Title = "Retards",
-                    Values = new ChartValues<int> { Retards }
-                }
-            };
+            DashboardSeries = new SeriesCollection
+    {
+        new ColumnSeries
+        {
+            Title = "Livres",
+            Values = new ChartValues<int> { TotalLivres },
+            Fill = System.Windows.Media.Brushes.Green
+        },
+        new ColumnSeries
+        {
+            Title = "Emprunts",
+            Values = new ChartValues<int> { EmpruntsEnCours },
+            Fill = System.Windows.Media.Brushes.DodgerBlue
+        },
+        new ColumnSeries
+        {
+            Title = "Retards",
+            Values = new ChartValues<int> { Retards },
+            Fill = System.Windows.Media.Brushes.Red
+        }
+    };
 
             Labels = new[] { "Statistiques" };
 
-            // 📋 Récupérer les 5 derniers emprunts
             DerniersEmprunts = new ObservableCollection<Emprunt>(
                 db.Emprunts.OrderByDescending(e => e.DateEmprunt).Take(5).ToList()
             );
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = null)

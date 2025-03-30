@@ -9,25 +9,25 @@
 
     <UserControl.Resources>
         <Style TargetType="Button">
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Padding" Value="8,4"/>
             <Setter Property="Background" Value="#1976D2"/>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="40"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#1565C0"/>
+                    <Setter Property="Background" Value="#0D47A1"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -39,19 +39,19 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Menu latéral -->
-        <DockPanel Background="#E3F2FD" Grid.Column="0" Margin="10">
-            <StackPanel>
-                <TextBlock Text="📚 BiblioGest" FontWeight="Bold" FontSize="18" Foreground="#0D47A1" Margin="10"/>
+        <!-- Menu latéral stylé -->
+        <Border Background="#E3F2FD" CornerRadius="0,10,10,0" Margin="5">
+            <StackPanel Margin="10" VerticalAlignment="Top">
+                <TextBlock Text="📚 BiblioGest" FontSize="20" FontWeight="Bold" Foreground="#0D47A1" Margin="0,0,0,20"/>
                 <Button Content="🏠 Dashboard" Command="{Binding ShowAdminDashboardCommand}"/>
                 <Button Content="📘 Livres" Command="{Binding ShowLivreViewCommand}"/>
                 <Button Content="👥 Adhérents" Command="{Binding ShowAdherentViewCommand}"/>
                 <Button Content="📅 Emprunts" Command="{Binding ShowEmpruntViewCommand}"/>
             </StackPanel>
-        </DockPanel>
+        </Border>
 
         <!-- Vue dynamique -->
-        <Border Grid.Column="1" CornerRadius="12" Margin="10" Background="White">
+        <Border Grid.Column="1" Background="White" CornerRadius="10" Margin="10">
             <ContentControl Content="{Binding CurrentView}"/>
         </Border>
     </Grid>

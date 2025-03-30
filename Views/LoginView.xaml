@@ -5,28 +5,68 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:BiblioGest.Views"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="400">
+             d:DesignHeight="400" d:DesignWidth="500">
+
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="#1976D2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0D47A1"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Background" Value="#F5F5F5"/>
+            <Setter Property="BorderBrush" Value="#BDBDBD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style TargetType="PasswordBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Background" Value="#F5F5F5"/>
+            <Setter Property="BorderBrush" Value="#BDBDBD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </UserControl.Resources>
 
     <Grid Background="#E3F2FD">
-        <Border Padding="25" Background="White" CornerRadius="15" Width="360" Height="290"
-                HorizontalAlignment="Center" VerticalAlignment="Center" Effect="{DynamicResource DropShadowEffect}">
-            <StackPanel>
-                <TextBlock Text="🔐 Connexion" FontSize="24" FontWeight="Bold" Foreground="#1976D2"
+        <Border Width="400" Height="320" Background="White" CornerRadius="12"
+                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                Margin="10" Effect="{x:Null}">
+            <StackPanel Margin="30">
+                <TextBlock Text="🔐 Connexion à BiblioGest"
+                           FontSize="22" FontWeight="Bold" Foreground="#1976D2"
                            Margin="0,0,0,20" HorizontalAlignment="Center"/>
 
-                <TextBlock Text="Identifiant" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="0,0,0,10" 
-                         Background="#F0F0F0" BorderBrush="#CCC" BorderThickness="1"/>
+                <TextBlock Text="Identifiant" FontWeight="SemiBold"/>
+                <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
 
-                <TextBlock Text="Mot de passe" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <PasswordBox x:Name="PwdBox" Height="30" Margin="0,0,0,10" 
-                             Background="#F0F0F0" BorderBrush="#CCC" BorderThickness="1"
-                             PasswordChanged="PwdBox_PasswordChanged"/>
+                <TextBlock Text="Mot de passe" FontWeight="SemiBold" Margin="0,10,0,0"/>
+                <PasswordBox x:Name="PwdBox" PasswordChanged="PwdBox_PasswordChanged"/>
 
-                <CheckBox Content="Se souvenir de moi" IsChecked="{Binding RememberMe}" Margin="0,0,0,10"/>
+                <CheckBox Content="Se souvenir de moi" IsChecked="{Binding RememberMe}" Margin="0,10,0,5"/>
 
-                <Button Content="Se connecter" Command="{Binding LoginCommand}" Height="40"
-                        Background="#1976D2" Foreground="White" FontWeight="Bold" FontSize="14"/>
+                <Button Content="Se connecter" Command="{Binding LoginCommand}"/>
             </StackPanel>
         </Border>
     </Grid>

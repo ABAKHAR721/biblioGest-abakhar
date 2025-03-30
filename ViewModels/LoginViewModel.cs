@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using BiblioGest.Commands;
+using BiblioGest.Views;
 
 namespace BiblioGest.ViewModels
 {
@@ -23,14 +24,26 @@ namespace BiblioGest.ViewModels
         {
             if (Username == "admin" && Password == "admin")
             {
-                // Authentification réussie
-                Application.Current.MainWindow.Content = new BiblioGest.Views.MainAppView(); 
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    try
+                    {
+                        var mainAppView = new MainAppView();
+                        Application.Current.MainWindow.Content = mainAppView;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors du chargement de l'application :\n" + ex.Message,
+                            "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                });
             }
             else
             {
                 MessageBox.Show("Identifiants invalides !");
             }
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = null)
