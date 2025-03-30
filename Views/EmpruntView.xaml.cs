@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BiblioGest.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,20 +13,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BiblioGest.ViewModels; // NE PAS OUBLIER !
 
 namespace BiblioGest.Views
 {
     /// <summary>
-    /// Logique d'interaction pour UserControl1.xaml
+    /// Logique d'interaction pour EmpruntView.xaml
     /// </summary>
-    public partial class LivreView : UserControl
+    public partial class EmpruntView : UserControl
     {
-        public LivreView()
+        public EmpruntView()
         {
             InitializeComponent();
-            DataContext = new LivreViewModel(); 
-
+            DataContext = new EmpruntViewModel();
 
         }
     }

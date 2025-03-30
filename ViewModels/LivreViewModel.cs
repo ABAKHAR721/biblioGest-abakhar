@@ -12,6 +12,8 @@ namespace BiblioGest.ViewModels
     public class LivreViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<Livre> Livres { get; set; }
+        public ICommand UpdateLivreCommand { get; }
+
 
         private Livre _newLivre = new Livre();
         public Livre NewLivre
@@ -44,6 +46,8 @@ namespace BiblioGest.ViewModels
             LoadLivres();
 
             AddLivreCommand = new RelayCommand(_ => AjouterLivre());
+            UpdateLivreCommand = new RelayCommand(_ => ModifierLivre());
+
             DeleteLivreCommand = new RelayCommand(_ => SupprimerLivre());
         }
 
@@ -56,6 +60,27 @@ namespace BiblioGest.ViewModels
                 Livres.Add(livre);
             }
         }
+
+        private void ModifierLivre()
+        {
+            if (SelectedLivre == null) return;
+
+            using var db = new AppDbContext();
+            var livre = db.Livres.FirstOrDefault(l => l.ISBN == SelectedLivre.ISBN);
+            if (livre != null)
+            {
+                livre.Titre = SelectedLivre.Titre;
+                livre.Auteur = SelectedLivre.Auteur;
+                livre.Editeur = SelectedLivre.Editeur;
+                livre.AnneePublication = SelectedLivre.AnneePublication;
+                livre.Categorie = SelectedLivre.Categorie;
+                livre.NombreExemplaires = SelectedLivre.NombreExemplaires;
+
+                db.SaveChanges();
+                LoadLivres(); // Recharge la liste pour que les modifs apparaissent
+            }
+        }
+
 
         private void AjouterLivre()
         {

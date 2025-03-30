@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="BiblioGest.Views.AdminDashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BiblioGest.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Menu latéral -->
+        <StackPanel Background="#EEE" Grid.Column="0">
+            <Button Content="Livres" Command="{Binding ShowLivreViewCommand}" Margin="10"/>
+            <Button Content="Adhérents" Command="{Binding ShowAdherentViewCommand}" Margin="10"/>
+            <Button Content="Emprunts" Command="{Binding ShowEmpruntViewCommand}" Margin="10"/>
+            <Button Content="Dashboard" Command="{Binding ShowDashboardViewCommand}" Margin="10"/>
+        </StackPanel>
+
+        <!-- Zone principale -->
+        <StackPanel Grid.Column="1" Margin="20">
+            <TextBlock Text="Tableau de Bord Administratif" FontSize="22" FontWeight="Bold" Margin="0,0,0,20"/>
+
+            <!-- Statistiques -->
+            <WrapPanel>
+                <StackPanel Width="180" Margin="10">
+                    <TextBlock Text="Livres disponibles" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding TotalLivres}" FontSize="18" Foreground="Green"/>
+                </StackPanel>
+                <StackPanel Width="180" Margin="10">
+                    <TextBlock Text="Emprunts en cours" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding EmpruntsEnCours}" FontSize="18" Foreground="Orange"/>
+                </StackPanel>
+                <StackPanel Width="180" Margin="10">
+                    <TextBlock Text="Retards" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Retards}" FontSize="18" Foreground="Red"/>
+                </StackPanel>
+            </WrapPanel>
+
+            <!-- Raccourcis -->
+            <TextBlock Text="Raccourcis rapides" FontWeight="Bold" Margin="10,20,0,5"/>
+            <WrapPanel>
+                <Button Content="Ajouter Livre" Command="{Binding ShowLivreViewCommand}" Width="120" Margin="5"/>
+                <Button Content="Nouvel Emprunt" Command="{Binding ShowEmpruntViewCommand}" Width="120" Margin="5"/>
+            </WrapPanel>
+
+            <!-- Activités récentes -->
+            <TextBlock Text="Derniers Emprunts" FontWeight="Bold" Margin="10,20,0,5"/>
+            <DataGrid ItemsSource="{Binding DerniersEmprunts}" AutoGenerateColumns="False" Height="200">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" />
+                    <DataGridTextColumn Header="Adhérent ID" Binding="{Binding AdherentId}" />
+                    <DataGridTextColumn Header="Date Emprunt" Binding="{Binding DateEmprunt}" />
+                    <DataGridTextColumn Header="Retour Prévu" Binding="{Binding DateRetourPrevu}" />
+                    <DataGridTextColumn Header="Retour Effectif" Binding="{Binding DateRetourEffectif}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>

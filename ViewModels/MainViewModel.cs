@@ -12,6 +12,8 @@ namespace BiblioGest.ViewModels
         public ICommand ShowAdherentViewCommand { get; }
         public ICommand ShowEmpruntViewCommand { get; }
         public ICommand ShowDashboardViewCommand { get; }
+        public ICommand ShowAdminDashboardCommand { get; }
+        private void SetAdminDashboardView() => CurrentView = new AdminDashboardView();
 
         private object _currentView;
         public object CurrentView
@@ -26,12 +28,15 @@ namespace BiblioGest.ViewModels
 
         public MainViewModel()
         {
-            ShowLivreViewCommand = new RelayCommand(o => CurrentView = new LivreView());
-            ShowAdherentViewCommand = new RelayCommand(o => CurrentView = null); // à remplacer par une vraie vue
-            ShowEmpruntViewCommand = new RelayCommand(o => CurrentView = null);
-            ShowDashboardViewCommand = new RelayCommand(o => CurrentView = null);
+            ShowAdminDashboardCommand = new RelayCommand(_ => SetAdminDashboardView());
+            CurrentView = new AdminDashboardView();
+            ShowLivreViewCommand = new RelayCommand(_ => CurrentView = new LivreView());
+            ShowAdherentViewCommand = new RelayCommand(_ => CurrentView = new AdherentView());
+            ShowEmpruntViewCommand = new RelayCommand(_ => CurrentView = new EmpruntView());
+            ShowDashboardViewCommand = new RelayCommand(_ => CurrentView = null);
 
-            CurrentView = new LivreView();
+
+            CurrentView = new LivreView(); 
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -39,5 +44,9 @@ namespace BiblioGest.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+      
+      
+
+
     }
 }

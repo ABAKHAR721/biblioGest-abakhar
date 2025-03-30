@@ -21,7 +21,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        DataContext = new MainViewModel(); // 🔥 Sans ça, le binding ne marche pas !
+        Content = new Views.LoginView(); // 👈 Affiche LoginView au démarrage
 
     }
 }

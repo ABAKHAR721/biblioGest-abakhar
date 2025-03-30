@@ -18,7 +18,7 @@
             <Button Content="Livres" Command="{Binding ShowLivreViewCommand}" Margin="5"/>
             <Button Content="Adhérents" Command="{Binding ShowAdherentViewCommand}" Margin="5"/>
             <Button Content="Emprunts" Command="{Binding ShowEmpruntViewCommand}" Margin="5"/>
-            <Button Content="Dashboard" Command="{Binding ShowDashboardViewCommand}" Margin="5"/>
+            <Button Content="Dashboard Admin" Command="{Binding ShowAdminDashboardCommand}" Margin="5"/>
         </StackPanel>
 
         <!-- Vue dynamique -->

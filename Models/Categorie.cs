@@ -1,9 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-public class Categorie
+namespace BiblioGest.Models
 {
-    [Key]
-    public int Id { get; set; }
-    public string Nom { get; set; }
-    public string Description { get; set; }
+    public class Categorie
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Nom { get; set; }
+        public string Description { get; set; }
+    }
 }

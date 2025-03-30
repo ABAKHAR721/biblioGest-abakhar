@@ -1,14 +1,28 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-public class Adherent
+namespace BiblioGest.Models
 {
-    [Key]
-    public int Id { get; set; }
-    public string Nom { get; set; }
-    public string Prenom { get; set; }
-    public string Adresse { get; set; }
-    public string Email { get; set; }
-    public string Telephone { get; set; }
-    public DateTime DateInscription { get; set; }
+    public class Adherent
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        public string Nom { get; set; }
+
+        [Required]
+        public string Prenom { get; set; }
+
+        [Required]
+        public string Adresse { get; set; }
+
+        [Required]
+        public string Email { get; set; }
+
+        [Required]
+        public string Telephone { get; set; }
+
+        public DateTime DateInscription { get; set; } = DateTime.UtcNow;
+    }
 }
