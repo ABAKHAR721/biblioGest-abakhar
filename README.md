@@ -57,7 +57,7 @@ BiblioGest/
 🔐 Login avec `Username` + `Mot de passe` (`admin/admin`)
 
 📌 Capture :  
-📷 _[Insérer ici la capture de l'écran de login]_
+![image](https://github.com/user-attachments/assets/28c68ead-36af-4917-a3a0-6a53a8351a2f)
 
 ---
 
@@ -66,7 +66,8 @@ BiblioGest/
 🎛️ Menu moderne pour accéder aux modules : Livres, Adhérents, Emprunts, Dashboard
 
 📌 Capture :  
-📷 _[Insérer ici la capture de la page principale]_
+📷 ![image](https://github.com/user-attachments/assets/46c17172-a598-49eb-a70f-1cc9801b969b)
+
 
 ---
 
@@ -76,7 +77,8 @@ BiblioGest/
 Saisie dynamique avec DataGrid.
 
 📌 Capture :  
-📷 _[Insérer ici la capture de l'écran Livres]_
+📷 ![image](https://github.com/user-attachments/assets/a705bfc0-54f7-4a5f-8cd1-04ed13340097)
+
 
 ---
 
@@ -85,7 +87,7 @@ Saisie dynamique avec DataGrid.
 👤 Gestion complète des adhérents avec formulaire stylé + historique
 
 📌 Capture :  
-📷 _[Insérer ici la capture de l'écran Adhérents]_
+📷 ![image](https://github.com/user-attachments/assets/4fb4bf24-732d-425a-a399-a0b0b2819cb4)
 
 ---
 
@@ -94,7 +96,9 @@ Saisie dynamique avec DataGrid.
 📅 Sélectionner un livre + adhérent, ajouter un emprunt, enregistrer un retour, détecter automatiquement les retards.
 
 📌 Capture :  
-📷 _[Insérer ici la capture de l'écran Emprunts]_
+📷 ![image](https://github.com/user-attachments/assets/cd75a586-785f-45a6-856e-85e1b21011b3)
+
+
 
 ---
 
