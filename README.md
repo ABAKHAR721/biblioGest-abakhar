@@ -5,7 +5,7 @@
 - **Mouaad ELHANSALI**
 
 ### 🎓 Encadré par :
-- **Prof. Hassan Zilli**
+- **Prof. Hassan ZILI**
 
 ---
 
@@ -162,6 +162,9 @@ Saisie dynamique avec DataGrid.
 - 👨‍💻 **Mohamed BARBYCH**
 - 👨‍💻 **Mouaad ELHANSALI**
 
+### 🎓 Encadré par :
+- **Prof. Hassan ZILI**
+  
 📬 _Nous restons disponibles pour toute présentation ou démonstration !_
 
 ---
