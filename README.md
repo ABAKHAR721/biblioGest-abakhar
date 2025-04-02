@@ -115,7 +115,7 @@ Saisie dynamique avec DataGrid.
 - 🕒 Liste des derniers emprunts
 
 📌 Capture :  
-📷 _[Insérer ici la capture du Dashboard]_
+📷 ![image](https://github.com/user-attachments/assets/09a29ce9-30c6-467b-8941-3acc9bf1bb8f)
 
 ---
 
