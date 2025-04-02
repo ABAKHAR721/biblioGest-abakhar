@@ -1,8 +1,11 @@
-﻿# 📚 BiblioGest – Mini Projet C# WPF
+# 📚 BiblioGest – Mini Projet C# WPF
 
 ### 👨‍💻 Réalisé par :
 - **Mohamed BARBYCH**
 - **Mouaad ELHANSALI**
+
+### 🎓 Encadré par :
+- **Prof. Hassan Zilli**
 
 ---
 
