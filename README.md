@@ -124,7 +124,7 @@ Dynamic input with DataGrid.
 📘 Book:
 {
   "ISBN": "9781234567890",
-  "Title": "na3im aljahl",
+  "Title": "jahim almaarifa",
   "Author": "ABAKHAR ABDESSAMAD"
 }
 
