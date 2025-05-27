@@ -56,51 +56,43 @@ BiblioGest/
 
 ### 1️⃣ Login Screen
 
-🔐 Login with `Username` + `Password` (`admin/admin`)
+🔐 Login with `Username` + `Password` (`**abkhar**/**abkhar**`)
 
 📌 Screenshot:
 ![WhatsApp Image 2025-05-28 at 00 39 23_bd03283e](https://github.com/user-attachments/assets/f1ffcfca-e0e4-467d-a0ab-738742742fb3)
 
 ---
-
-### 2️⃣ Main Interface (Side Menu)
-
-🎛️ Modern menu to access modules: Books, Members, Loans, Dashboard
-
-📌 Screenshot:
-📷 ![image](https://github.com/user-attachments/assets/46c17172-a598-49eb-a70f-1cc9801b969b)
-
----
-
-### 3️⃣ Book Management Module
+### 2️⃣ Book Management Module
 
 📘 Add, modify, delete, view books.
 Dynamic input with DataGrid.
 
 📌 Screenshot:
-📷 ![image](https://github.com/user-attachments/assets/a705bfc0-54f7-4a5f-8cd1-04ed13340077)
+📷 ![WhatsApp Image 2025-05-28 at 00 39 50_eafe8482](https://github.com/user-attachments/assets/c48d73bb-e3b6-4314-b62a-3c1cbd74b89a)
 
 ---
 
-### 4️⃣ Member Management Module
+### 3️⃣ Member Management Module
 
 👤 Complete member management with a styled form + history
 
 📌 Screenshot:
-📷 ![image](https://github.com/user-attachments/assets/4fb4bf24-732d-425a-a399-a0b0b2819cb4)
+📷 ![WhatsApp Image 2025-05-28 at 00 40 00_4639330d](https://github.com/user-attachments/assets/5fa70e69-62dd-435a-837f-8ac6949c2ef2)
+
 
 ---
 
-### 5️⃣ Loan Management Module
+### 4️⃣ Loan Management Module
 
 📅 Select a book + member, add a loan, record a return, automatically detect delays.
 
 📌 Screenshot:
-📷 ![image](https://github.com/user-attachments/assets/cd75a586-785f-45a6-85e1b2011b3)
+📷 ![WhatsApp Image 2025-05-28 at 00 40 12_8c034a75](https://github.com/user-attachments/assets/527c313e-cf28-4f13-921f-12b1a6b24eeb)
+
 
 ---
 
-### 6️⃣ Administrative Dashboard
+### 5️⃣ Administrative Dashboard
 
 📊 Displays:
 - 📘 Number of books
@@ -110,7 +102,8 @@ Dynamic input with DataGrid.
 - 🕒 List of the latest loans
 
 📌 Screenshot:
-📷 ![image](https://github.com/user-attachments/assets/09a29ce9-30c6-467b-8941-3acc9bf1bb8f)
+📷 ![WhatsApp Image 2025-05-28 at 00 39 37_200038b6](https://github.com/user-attachments/assets/06d0aa10-e001-4a36-a239-003445048966)
+
 
 ---
 
