@@ -59,7 +59,7 @@ BiblioGest/
 🔐 Login with `Username` + `Password` (`admin/admin`)
 
 📌 Screenshot:
-![image](https://github.com/user-attachments/assets/28c68ead-36af-4917-a3a0-6a53a8351a2f)
+![WhatsApp Image 2025-05-28 at 00 39 23_bd03283e](https://github.com/user-attachments/assets/f1ffcfca-e0e4-467d-a0ab-738742742fb3)
 
 ---
 
