@@ -22,7 +22,7 @@ namespace BiblioGest.ViewModels
 
         private void Login()
         {
-            if (Username == "admin" && Password == "admin")
+            if (Username == "abkhar" && Password == "abkhar")
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {

@@ -1,27 +1,26 @@
-# 📚 BiblioGest – Mini Projet C# WPF
+# 📚 BiblioGest – Mini Project C# WPF
 
-### 👨‍💻 Réalisé par :
-- **Mohamed BARBYCH**
-- **Mouaad ELHANSALI**
+### 👨‍💻 Owner / Developed by:
+- **ABAKHAR Abdessamad**
 
-### 🎓 Encadré par :
+### 🎓 Supervised by:
 - **Prof. Hassan ZILI**
 
 ---
 
-## 🔧 Configurer la chaîne de connexion
+## 🔧 Configure the Connection String
 
-Dans le fichier `AppDbContext.cs`, remplace la configuration par :
+In the `AppDbContext.cs` file, replace the configuration with:
 
 ```csharp
-options.UseNpgsql("Host=localhost;Port=5432;Database=biblio_db;Username=postgres;Password=TON_MOT_DE_PASSE");
+options.UseNpgsql("Host=localhost;Port=5432;Database=biblio_db;Username=postgres;Password=YOUR_PASSWORD");
 ```
 
 ---
 
-## ⚙️ Appliquer les migrations
+## ⚙️ Apply Migrations
 
-Depuis la console du gestionnaire de packages NuGet :
+From the NuGet Package Manager Console:
 
 ```powershell
 Add-Migration Init
@@ -30,155 +29,147 @@ Update-Database
 
 ---
 
-## ▶️ Lancer le projet depuis Visual Studio
+## ▶️ Launch the Project from Visual Studio
 
-1. Ouvrir la solution `BiblioGest.sln`
-2. Sélectionner `MainWindow.xaml` comme fenêtre de démarrage
-3. Appuyer sur **F5** pour démarrer l'application 🚀
+1.  Open the `BiblioGest.sln` solution.
+2.  Select `MainWindow.xaml` as the startup window.
+3.  Press **F5** to start the application 🚀
 
 ---
 
-## 🧱 Structure du projet
+## 🧱 Project Structure
 
 ```bash
 BiblioGest/
 │
-├── Models/               # Entités : Livre, Adherent, Emprunt
+├── Models/               # Entities: Book, Member, Loan
 ├── Data/                 # AppDbContext
-├── Views/                # Interfaces graphiques WPF
-├── ViewModels/           # Logique métier (MVVM)
-├── Commands/             # RelayCommand pour les boutons
-└── MainWindow.xaml       # Point d’entrée de l’application
+├── Views/                # WPF Graphical Interfaces
+├── ViewModels/           # Business Logic (MVVM)
+├── Commands/             # RelayCommand for buttons
+└── MainWindow.xaml       # Application Entry Point
 ```
 
 ---
 
-## 🖼️ Captures d’écran + Explication
+## 🖼️ Screenshots + Explanation
 
-### 1️⃣ Écran de Connexion
+### 1️⃣ Login Screen
 
-🔐 Login avec `Username` + `Mot de passe` (`admin/admin`)
+🔐 Login with `Username` + `Password` (`admin/admin`)
 
-📌 Capture :  
+📌 Screenshot:
 ![image](https://github.com/user-attachments/assets/28c68ead-36af-4917-a3a0-6a53a8351a2f)
 
 ---
 
-### 2️⃣ Interface principale (Menu latéral)
+### 2️⃣ Main Interface (Side Menu)
 
-🎛️ Menu moderne pour accéder aux modules : Livres, Adhérents, Emprunts, Dashboard
+🎛️ Modern menu to access modules: Books, Members, Loans, Dashboard
 
-📌 Capture :  
+📌 Screenshot:
 📷 ![image](https://github.com/user-attachments/assets/46c17172-a598-49eb-a70f-1cc9801b969b)
 
+---
+
+### 3️⃣ Book Management Module
+
+📘 Add, modify, delete, view books.
+Dynamic input with DataGrid.
+
+📌 Screenshot:
+📷 ![image](https://github.com/user-attachments/assets/a705bfc0-54f7-4a5f-8cd1-04ed13340077)
 
 ---
 
-### 3️⃣ Module de Gestion des Livres
+### 4️⃣ Member Management Module
 
-📘 Ajouter, modifier, supprimer, consulter les livres.  
-Saisie dynamique avec DataGrid.
+👤 Complete member management with a styled form + history
 
-📌 Capture :  
-📷 ![image](https://github.com/user-attachments/assets/a705bfc0-54f7-4a5f-8cd1-04ed13340097)
-
-
----
-
-### 4️⃣ Module de Gestion des Adhérents
-
-👤 Gestion complète des adhérents avec formulaire stylé + historique
-
-📌 Capture :  
+📌 Screenshot:
 📷 ![image](https://github.com/user-attachments/assets/4fb4bf24-732d-425a-a399-a0b0b2819cb4)
 
 ---
 
-### 5️⃣ Module de Gestion des Emprunts
+### 5️⃣ Loan Management Module
 
-📅 Sélectionner un livre + adhérent, ajouter un emprunt, enregistrer un retour, détecter automatiquement les retards.
+📅 Select a book + member, add a loan, record a return, automatically detect delays.
 
-📌 Capture :  
-📷 ![image](https://github.com/user-attachments/assets/cd75a586-785f-45a6-856e-85e1b21011b3)
-
-
+📌 Screenshot:
+📷 ![image](https://github.com/user-attachments/assets/cd75a586-785f-45a6-85e1b2011b3)
 
 ---
 
-### 6️⃣ Dashboard Administratif
+### 6️⃣ Administrative Dashboard
 
-📊 Affiche :
-- 📘 Nombre de livres
-- 📅 Emprunts en cours
-- ⏰ Retards
-- 📈 Graphiques via LiveCharts
-- 🕒 Liste des derniers emprunts
+📊 Displays:
+- 📘 Number of books
+- 📅 Current loans
+- ⏰ Delays
+- 📈 Graphs via LiveCharts
+- 🕒 List of the latest loans
 
-📌 Capture :  
+📌 Screenshot:
 📷 ![image](https://github.com/user-attachments/assets/09a29ce9-30c6-467b-8941-3acc9bf1bb8f)
 
 ---
 
-## ✅ Fonctionnalités réalisées (Cahier des charges)
+## ✅ Implemented Features (Requirements Specification)
 
-- [x] Interface de connexion avec authentification
-- [x] Navigation via menu latéral moderne
-- [x] CRUD complet pour Livres, Adhérents, Emprunts
-- [x] Gestion des retards d’emprunts
-- [x] Dashboard statistique et interactif
-- [x] Design clair, responsive et moderne
+- [x] Login interface with authentication
+- [x] Navigation via a modern side menu
+- [x] Complete CRUD for Books, Members, Loans
+- [x] Management of loan delays
+- [x] Statistical and interactive dashboard
+- [x] Clear, responsive, and modern design
 
 ---
 
-## 📦 Données de test recommandées
+## 📦 Recommended Test Data
 
 ```json
-📘 Livre : 
+📘 Book:
 {
   "ISBN": "9781234567890",
-  "Titre": "Le Petit Prince",
-  "Auteur": "Saint-Exupéry"
+  "Title": "na3im aljahl",
+  "Author": "ABAKHAR ABDESSAMAD"
 }
 
-👤 Adhérent :
+👤 Member:
 {
-  "Nom": "Alaoui",
-  "Prénom": "Samira",
-  "Email": "samira.alaoui@gmail.com"
+  "LastName": "ABAKHAR",
+  "FirstName": "Abdessamad",
+  "Email": "abdssamad.abkhar22@gmail.com"
 }
 
-📅 Emprunt :
+📅 Loan:
 {
-  "Livre": "9781234567890",
-  "AdherentId": 1,
-  "DateEmprunt": "Aujourd'hui"
+  "BookISBN": "9781234567890",
+  "MemberId": 1,
+  "LoanDate": "Today"
 }
 ```
 
 ---
 
-## 📌 Auteurs
+## 📌 Author
 
-- 👨‍💻 **Mohamed BARBYCH**
-- 👨‍💻 **Mouaad ELHANSALI**
+- 👨‍💻 **ABAKHAR Abdessamad**
 
-### 🎓 Encadré par :
+### 🎓 Supervised by:
 - **Prof. Hassan ZILI**
-  
-📬 _Nous restons disponibles pour toute présentation ou démonstration !_
+
+📬 _I am available for any presentation or demonstration!_
 
 ---
 
 ## 🔚 Conclusion
 
-BiblioGest est une solution complète et moderne pour la gestion d’une bibliothèque 📚.  
-Elle répond totalement aux exigences du cahier de charges.
+BiblioGest is a complete and modern solution for library management 📚.
+It fully meets the requirements specification.
 
-### 🚀 Possibilités d’évolution :
-- Export/Import Excel
-- Authentification multi-utilisateurs
-- Application mobile (avec .NET MAUI)
-- Filtres multicritères et recherche intelligente
-
-🙏 Merci à notre professeur pour l’encadrement pédagogique de ce projet.
-
+### 🚀 Possibilities for Evolution:
+- Excel Export/Import
+- Multi-user authentication
+- Mobile application (with .NET MAUI)
+- Multi-criteria filters and smart search

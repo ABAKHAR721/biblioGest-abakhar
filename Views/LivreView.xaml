@@ -1,70 +1,78 @@
 ﻿<UserControl x:Class="BiblioGest.Views.LivreView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BiblioGest.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d"
+             d:DesignHeight="700" d:DesignWidth="900">
 
-    <StackPanel Margin="10">
-        <!-- Titre -->
-        <TextBlock Text="Gestion des Livres" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+	<StackPanel Margin="0">
+		<!-- Titre -->
+		<TextBlock Text="📘 Gestion des Livres" Style="{StaticResource TitleStyle}"/>
 
-        <!-- Formulaire avec labels -->
-        <WrapPanel Margin="0,0,0,10">
-            <StackPanel Margin="5">
-                <TextBlock Text="ISBN"/>
-                <TextBox Width="100" Text="{Binding NewLivre.ISBN}" />
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Titre"/>
-                <TextBox Width="150" Text="{Binding NewLivre.Titre}" />
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Auteur"/>
-                <TextBox Width="100" Text="{Binding NewLivre.Auteur}" />
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Éditeur"/>
-                <TextBox Width="100" Text="{Binding NewLivre.Editeur}" />
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Année"/>
-                <TextBox Width="60" Text="{Binding NewLivre.AnneePublication}" />
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Catégorie"/>
-                <TextBox Width="100" Text="{Binding NewLivre.Categorie}" />
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Stock"/>
-                <TextBox Width="50" Text="{Binding NewLivre.NombreExemplaires}" />
-            </StackPanel>
-        </WrapPanel>
+		<!-- Formulaire avec labels (Card) -->
+		<Border Style="{StaticResource CardBorderStyle}">
+			<StackPanel>
+				<TextBlock Text="Ajouter / Modifier un Livre" Style="{StaticResource SubtitleStyle}" Margin="0,0,0,15"/>
+				<WrapPanel Margin="0,0,0,10">
+					<StackPanel Margin="0,0,15,10">
+						<TextBlock Text="ISBN" Style="{StaticResource LabelStyle}"/>
+						<TextBox Width="120" Text="{Binding NewLivre.ISBN}" />
+					</StackPanel>
+					<StackPanel Margin="0,0,15,10">
+						<TextBlock Text="Titre" Style="{StaticResource LabelStyle}"/>
+						<TextBox Width="200" Text="{Binding NewLivre.Titre}" />
+					</StackPanel>
+					<StackPanel Margin="0,0,15,10">
+						<TextBlock Text="Auteur" Style="{StaticResource LabelStyle}"/>
+						<TextBox Width="150" Text="{Binding NewLivre.Auteur}" />
+					</StackPanel>
+					<StackPanel Margin="0,0,15,10">
+						<TextBlock Text="Éditeur" Style="{StaticResource LabelStyle}"/>
+						<TextBox Width="150" Text="{Binding NewLivre.Editeur}" />
+					</StackPanel>
+					<StackPanel Margin="0,0,15,10">
+						<TextBlock Text="Année" Style="{StaticResource LabelStyle}"/>
+						<TextBox Width="70" Text="{Binding NewLivre.AnneePublication}" />
+					</StackPanel>
+					<StackPanel Margin="0,0,15,10">
+						<TextBlock Text="Catégorie" Style="{StaticResource LabelStyle}"/>
+						<TextBox Width="120" Text="{Binding NewLivre.Categorie}" />
+					</StackPanel>
+					<StackPanel Margin="0,0,15,10">
+						<TextBlock Text="Stock" Style="{StaticResource LabelStyle}"/>
+						<TextBox Width="60" Text="{Binding NewLivre.NombreExemplaires}" />
+					</StackPanel>
+				</WrapPanel>
 
-        <!-- Boutons -->
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-            <Button Content="Ajouter" Command="{Binding AddLivreCommand}" Width="100" Margin="5"/>
-            <Button Content="Modifier" Command="{Binding UpdateLivreCommand}" Width="100" Margin="5"/>
-            <Button Content="Supprimer" Command="{Binding DeleteLivreCommand}" Width="100" Margin="5"/>
-        </StackPanel>
+				<!-- Boutons -->
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+					<Button Content="Ajouter" Command="{Binding AddLivreCommand}" Style="{StaticResource AddButtonStyle}"/>
+					<Button Content="Modifier" Command="{Binding UpdateLivreCommand}"/>
+					<Button Content="Supprimer" Command="{Binding DeleteLivreCommand}" Style="{StaticResource DeleteButtonStyle}"/>
+				</StackPanel>
+			</StackPanel>
+		</Border>
 
-        <!-- Tableau -->
-        <DataGrid ItemsSource="{Binding Livres}" 
-                  SelectedItem="{Binding SelectedLivre}" 
-                  AutoGenerateColumns="False" 
-                  Height="300">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" />
-                <DataGridTextColumn Header="Titre" Binding="{Binding Titre}" />
-                <DataGridTextColumn Header="Auteur" Binding="{Binding Auteur}" />
-                <DataGridTextColumn Header="Éditeur" Binding="{Binding Editeur}" />
-                <DataGridTextColumn Header="Année" Binding="{Binding AnneePublication}" />
-                <DataGridTextColumn Header="Catégorie" Binding="{Binding Categorie}" />
-                <DataGridTextColumn Header="Stock" Binding="{Binding NombreExemplaires}" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </StackPanel>
+		<!-- Tableau (Card) -->
+		<Border Style="{StaticResource CardBorderStyle}">
+			<StackPanel>
+				<TextBlock Text="Liste des Livres" Style="{StaticResource SubtitleStyle}" Margin="0,0,0,15"/>
+				<DataGrid ItemsSource="{Binding Livres}"
+                          SelectedItem="{Binding SelectedLivre}"
+                          Height="350">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="*" />
+						<DataGridTextColumn Header="Titre" Binding="{Binding Titre}" Width="1.5*" />
+						<DataGridTextColumn Header="Auteur" Binding="{Binding Auteur}" Width="*" />
+						<DataGridTextColumn Header="Éditeur" Binding="{Binding Editeur}" Width="*" />
+						<DataGridTextColumn Header="Année" Binding="{Binding AnneePublication}" Width="0.6*" />
+						<DataGridTextColumn Header="Catégorie" Binding="{Binding Categorie}" Width="*" />
+						<DataGridTextColumn Header="Stock" Binding="{Binding NombreExemplaires}" Width="0.6*" />
+					</DataGrid.Columns>
+				</DataGrid>
+			</StackPanel>
+		</Border>
+	</StackPanel>
 </UserControl>
-

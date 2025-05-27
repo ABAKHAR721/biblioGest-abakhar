@@ -5,69 +5,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:BiblioGest.Views"
              mc:Ignorable="d"
-             d:DesignHeight="400" d:DesignWidth="500">
+             d:DesignHeight="450" d:DesignWidth="600">
 
-    <UserControl.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Background" Value="#1976D2"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Margin" Value="0,5"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#0D47A1"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+	<Grid Background="{StaticResource BackgroundPrimaryBrush}">
+		<!-- Central Card for Login Form -->
+		<Border Style="{StaticResource CardBorderStyle}"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="350" Margin="10">
+			<StackPanel Margin="10">
+				<!-- Title -->
+				<TextBlock Text="🔐 Connexion à BiblioGest"
+                           Style="{StaticResource TitleStyle}"
+                           FontSize="20" Margin="0,0,0,15" HorizontalAlignment="Center"/>
 
-        <Style TargetType="TextBox">
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Margin" Value="0,5"/>
-            <Setter Property="Background" Value="#F5F5F5"/>
-            <Setter Property="BorderBrush" Value="#BDBDBD"/>
-            <Setter Property="BorderThickness" Value="1"/>
-        </Style>
+				<!-- Labels & Inputs -->
+				<TextBlock Text="Identifiant" Style="{StaticResource LabelStyle}"/>
+				<TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Style TargetType="PasswordBox">
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Margin" Value="0,5"/>
-            <Setter Property="Background" Value="#F5F5F5"/>
-            <Setter Property="BorderBrush" Value="#BDBDBD"/>
-            <Setter Property="BorderThickness" Value="1"/>
-        </Style>
-    </UserControl.Resources>
+				<TextBlock Text="Mot de passe" Style="{StaticResource LabelStyle}" Margin="0,10,0,0"/>
+				<!-- Keep x:Name if you handle PasswordChanged in code-behind -->
+				<PasswordBox x:Name="PwdBox" PasswordChanged="PwdBox_PasswordChanged" />
 
-    <Grid Background="#E3F2FD">
-        <Border Width="400" Height="320" Background="White" CornerRadius="12"
-                HorizontalAlignment="Center" VerticalAlignment="Center" 
-                Margin="10" Effect="{x:Null}">
-            <StackPanel Margin="30">
-                <TextBlock Text="🔐 Connexion à BiblioGest"
-                           FontSize="22" FontWeight="Bold" Foreground="#1976D2"
-                           Margin="0,0,0,20" HorizontalAlignment="Center"/>
+				<!-- Checkbox -->
+				<CheckBox Content="Se souvenir de moi" IsChecked="{Binding RememberMe}" Margin="0,15,0,15"
+                          Foreground="{StaticResource TextSecondaryBrush}" FontFamily="{StaticResource BaseFont}" FontSize="12"/>
 
-                <TextBlock Text="Identifiant" FontWeight="SemiBold"/>
-                <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
-
-                <TextBlock Text="Mot de passe" FontWeight="SemiBold" Margin="0,10,0,0"/>
-                <PasswordBox x:Name="PwdBox" PasswordChanged="PwdBox_PasswordChanged"/>
-
-                <CheckBox Content="Se souvenir de moi" IsChecked="{Binding RememberMe}" Margin="0,10,0,5"/>
-
-                <Button Content="Se connecter" Command="{Binding LoginCommand}"/>
-            </StackPanel>
-        </Border>
-    </Grid>
+				<!-- Login Button -->
+				<Button Content="Se connecter" Command="{Binding LoginCommand}" Width="Auto" Margin="0,0,0,0"/>
+			</StackPanel>
+		</Border>
+	</Grid>
 </UserControl>

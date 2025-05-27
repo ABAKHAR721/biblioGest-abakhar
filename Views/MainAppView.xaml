@@ -5,54 +5,64 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BiblioGest.Views"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="700" d:DesignWidth="1000">
 
-    <UserControl.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="#1976D2"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#0D47A1"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </UserControl.Resources>
+	<!-- UserControl.Resources removed as styles are global now -->
 
-    <Grid Background="#FAFAFA">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+	<Grid Background="{StaticResource BackgroundPrimaryBrush}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="220"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
 
-        <!-- Menu latéral stylé -->
-        <Border Background="#E3F2FD" CornerRadius="0,10,10,0" Margin="5">
-            <StackPanel Margin="10" VerticalAlignment="Top">
-                <TextBlock Text="📚 BiblioGest" FontSize="20" FontWeight="Bold" Foreground="#0D47A1" Margin="0,0,0,20"/>
-                <Button Content="🏠 Dashboard" Command="{Binding ShowAdminDashboardCommand}"/>
-                <Button Content="📘 Livres" Command="{Binding ShowLivreViewCommand}"/>
-                <Button Content="👥 Adhérents" Command="{Binding ShowAdherentViewCommand}"/>
-                <Button Content="📅 Emprunts" Command="{Binding ShowEmpruntViewCommand}"/>
-            </StackPanel>
-        </Border>
+		<!-- Styled Sidebar Menu -->
+		<Border Grid.Column="0" Style="{StaticResource CardBorderStyle}" Margin="10" Padding="15" VerticalAlignment="Stretch"
+                Background="{StaticResource BackgroundCardBrush}">
+			<StackPanel>
+				<!-- App Title/Logo -->
+				<TextBlock Text="📚 ABAKHAR " FontSize="22" FontWeight="Bold" Foreground="{StaticResource PrimaryDarkBrush}"
+                           Margin="0,0,0,30" HorizontalAlignment="Center"/>
 
-        <!-- Vue dynamique -->
-        <Border Grid.Column="1" Background="White" CornerRadius="10" Margin="10">
-            <ContentControl Content="{Binding CurrentView}"/>
-        </Border>
-    </Grid>
+				<!-- Navigation Buttons (Global style applies) -->
+				<Button Content="🏠 Dashboard" Command="{Binding ShowAdminDashboardCommand}" Margin="0,5"/>
+				<Button Content="📘 Books" Command="{Binding ShowLivreViewCommand}" Margin="0,5"/>
+				<Button Content="👥 Members" Command="{Binding ShowAdherentViewCommand}" Margin="0,5"/>
+				<Button Content="📅 Loans" Command="{Binding ShowEmpruntViewCommand}" Margin="0,5"/>
+				<!-- Add a spacer or separator if needed -->
+				<Rectangle Height="1" Fill="{StaticResource BorderBrush}" Margin="0,15"/>
+				<!-- Example: Logout Button -->
+				<Button Content="🔑 Logout" Command="{Binding LogoutCommand}" Margin="0,15,0,5"
+						Background="Transparent" Foreground="{StaticResource TextSecondaryBrush}"
+						BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
+						Padding="15,0">
+					<Button.Style>
+						<Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+							<Setter Property="Background" Value="Transparent"/>
+							<Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+							<Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+							<Setter Property="BorderThickness" Value="1"/>
+							<Setter Property="Padding" Value="15,0"/>
+							<!-- CORRECTED: Triggers directly under Style -->
+							<Style.Triggers>
+								<Trigger Property="IsMouseOver" Value="True">
+									<Setter Property="Background" Value="{StaticResource BorderBrush}"/>
+									<Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+								</Trigger>
+								<Trigger Property="IsEnabled" Value="False">
+									<Setter Property="Background" Value="{StaticResource BorderBrush}"/>
+									<Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+									<Setter Property="Cursor" Value="Arrow"/>
+								</Trigger>
+							</Style.Triggers>
+						</Style>
+					</Button.Style>
+				</Button>
+			</StackPanel>
+		</Border>
+
+		<!-- Dynamic Content Area -->
+		<Border Grid.Column="1" Style="{StaticResource CardBorderStyle}" Margin="10,10,10,10">
+			<ContentControl Content="{Binding CurrentView}"/>
+		</Border>
+	</Grid>
 </UserControl>

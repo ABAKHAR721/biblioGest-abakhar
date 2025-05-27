@@ -1,50 +1,62 @@
 ﻿<UserControl x:Class="BiblioGest.Views.EmpruntView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BiblioGest.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d"
+             d:DesignHeight="700" d:DesignWidth="800">
 
-    <StackPanel Margin="10">
-        <TextBlock Text="Gestion des Emprunts" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+	<StackPanel Margin="0">
+		<TextBlock Text="📅 Gestion des Emprunts" Style="{StaticResource TitleStyle}"/>
 
-        <WrapPanel Margin="0,0,0,10">
-            <StackPanel Margin="5">
-                <TextBlock Text="Livre (ISBN)" />
-                <ComboBox ItemsSource="{Binding Livres}" DisplayMemberPath="ISBN" SelectedValuePath="ISBN" SelectedValue="{Binding NewEmprunt.ISBN}" Width="120"/>
-            </StackPanel>
+		<!-- Form Section (Card) -->
+		<Border Style="{StaticResource CardBorderStyle}">
+			<StackPanel>
+				<TextBlock Text="Enregistrer ou Retourner un Emprunt" Style="{StaticResource SubtitleStyle}" Margin="0,0,0,15"/>
+				<WrapPanel Margin="0,0,0,10">
+					<StackPanel Margin="0,0,15,10">
+						<TextBlock Text="Livre (ISBN)" Style="{StaticResource LabelStyle}"/>
+						<ComboBox ItemsSource="{Binding Livres}" DisplayMemberPath="ISBN" SelectedValuePath="ISBN" SelectedValue="{Binding NewEmprunt.ISBN}" Width="150"/>
+					</StackPanel>
 
-            <StackPanel Margin="5">
-                <TextBlock Text="Adhérent" />
-                <ComboBox ItemsSource="{Binding Adherents}" DisplayMemberPath="Nom" SelectedValuePath="Id" SelectedValue="{Binding NewEmprunt.AdherentId}" Width="120"/>
-            </StackPanel>
+					<StackPanel Margin="0,0,15,10">
+						<TextBlock Text="Adhérent" Style="{StaticResource LabelStyle}"/>
+						<ComboBox ItemsSource="{Binding Adherents}" DisplayMemberPath="Nom" SelectedValuePath="Id" SelectedValue="{Binding NewEmprunt.AdherentId}" Width="150"/>
+					</StackPanel>
 
-            <StackPanel Margin="5">
-                <TextBlock Text="Date Emprunt" />
-                <DatePicker SelectedDate="{Binding NewEmprunt.DateEmprunt}" Width="120"/>
-            </StackPanel>
+					<StackPanel Margin="0,0,15,10">
+						<TextBlock Text="Date Emprunt" Style="{StaticResource LabelStyle}"/>
+						<DatePicker SelectedDate="{Binding NewEmprunt.DateEmprunt}" Width="150"/>
+					</StackPanel>
 
-            <StackPanel Margin="5">
-                <TextBlock Text="Date Retour Prévu" />
-                <DatePicker SelectedDate="{Binding NewEmprunt.DateRetourPrevu}" Width="120"/>
-            </StackPanel>
-        </WrapPanel>
+					<StackPanel Margin="0,0,15,10">
+						<TextBlock Text="Date Retour Prévu" Style="{StaticResource LabelStyle}"/>
+						<DatePicker SelectedDate="{Binding NewEmprunt.DateRetourPrevu}" Width="150"/>
+					</StackPanel>
+				</WrapPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-            <Button Content="Enregistrer" Command="{Binding AddEmpruntCommand}" Width="100" Margin="5"/>
-            <Button Content="Retourner" Command="{Binding ReturnEmpruntCommand}" Width="100" Margin="5"/>
-        </StackPanel>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+					<Button Content="Enregistrer" Command="{Binding AddEmpruntCommand}" Style="{StaticResource AddButtonStyle}"/>
+					<Button Content="Retourner" Command="{Binding ReturnEmpruntCommand}"/>
+				</StackPanel>
+			</StackPanel>
+		</Border>
 
-        <DataGrid ItemsSource="{Binding Emprunts}" SelectedItem="{Binding SelectedEmprunt}" AutoGenerateColumns="False" Height="250">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" />
-                <DataGridTextColumn Header="AdhérentId" Binding="{Binding AdherentId}" />
-                <DataGridTextColumn Header="Emprunt" Binding="{Binding DateEmprunt}" />
-                <DataGridTextColumn Header="Retour Prévu" Binding="{Binding DateRetourPrevu}" />
-                <DataGridTextColumn Header="Retour Effectif" Binding="{Binding DateRetourEffectif}" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </StackPanel>
+		<!-- List Section (Card) -->
+		<Border Style="{StaticResource CardBorderStyle}">
+			<StackPanel>
+				<TextBlock Text="Liste des Emprunts" Style="{StaticResource SubtitleStyle}" Margin="0,0,0,15"/>
+				<DataGrid ItemsSource="{Binding Emprunts}" SelectedItem="{Binding SelectedEmprunt}" Height="300">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="*" />
+						<DataGridTextColumn Header="Adhérent ID" Binding="{Binding AdherentId}" Width="*" />
+						<DataGridTextColumn Header="Emprunt" Binding="{Binding DateEmprunt}" Width="*" />
+						<DataGridTextColumn Header="Retour Prévu" Binding="{Binding DateRetourPrevu}" Width="*" />
+						<DataGridTextColumn Header="Retour Effectif" Binding="{Binding DateRetourEffectif}" Width="*" />
+					</DataGrid.Columns>
+				</DataGrid>
+			</StackPanel>
+		</Border>
+	</StackPanel>
 </UserControl>

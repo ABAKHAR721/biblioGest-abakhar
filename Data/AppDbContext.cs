@@ -13,7 +13,7 @@ namespace BiblioGest.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseNpgsql("Host=localhost;Port=5432;Database=biblio_db;Username=postgres;Password=123");
+            options.UseNpgsql("Host=localhost;Port=5432;Database=BiblioGestDB;Username=postgres;Password=yourpassword;");
         }
     }
 }
