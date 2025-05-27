@@ -23,17 +23,16 @@ options.UseNpgsql("Host=localhost;Port=5432;Database=biblio_db;Username=postgres
 From the NuGet Package Manager Console:
 
 ```powershell
-Add-Migration Init
-Update-Database
+dotnet tool install --global dotnet-ef
+dotnet ef migrations add Init
+dotnet ef database update
 ```
 
 ---
 
 ## ▶️ Launch the Project from Visual Studio
+### Select `MainWindow.xaml` as the startup window.
 
-1.  Open the `BiblioGest.sln` solution.
-2.  Select `MainWindow.xaml` as the startup window.
-3.  Press **F5** to start the application 🚀
 
 ---
 
@@ -41,7 +40,7 @@ Update-Database
 
 ```bash
 BiblioGest/
-│
+├── Styles/               # global style
 ├── Models/               # Entities: Book, Member, Loan
 ├── Data/                 # AppDbContext
 ├── Views/                # WPF Graphical Interfaces
